@@ -25,7 +25,10 @@ class RoomList extends Component {
   }
 
   handleClick() {
-    this.roomsRef.child(this.state.rooms.length + 1).set({name: this.state.newRoomName});
+  //this.roomsRef.child(this.state.rooms.length + 1).set({name: this.state.newRoomName});
+    this.roomsRef.push({
+      name: this.state.newRoomName
+    });
   }
 
   componentWillUnmount() {
@@ -33,7 +36,6 @@ class RoomList extends Component {
   }
 
   render() {
-    console.log(this.state.rooms);
     return (
       <aside>
         <div className="bloc-chat-header">
