@@ -5,7 +5,7 @@ class RoomList extends Component {
     super(props);
     this.state = {
       rooms: [],
-      newRoomName: "",
+      newRoomName: ""
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -15,9 +15,12 @@ class RoomList extends Component {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
       room.key = snapshot.key;
-      this.setState({ room: room });
       this.setState({ rooms: this.state.rooms.concat( room ) });
     });
+  }
+
+  componentWillUnmount() {
+
   }
 
   handleChange(e) {
@@ -31,8 +34,8 @@ class RoomList extends Component {
     });
   }
 
-  componentWillUnmount() {
-
+  handleRoomClickChild(room) {
+    this.props.handleRoomClickParent(room);
   }
 
   render() {
@@ -50,7 +53,7 @@ class RoomList extends Component {
         </div>
         {
           this.state.rooms.map( (room, index) =>
-            <div className="chat-rooms" key={room.key}>
+            <div className="chat-rooms" key={room.key} onClick={() => this.handleRoomClickChild(room)}>
               {room.name}
             </div>
           )
