@@ -21,11 +21,11 @@ class App extends Component {
     this.state = {
       activeRoom: ""
     };
-
   }
 
-  handleRoomClick(room) {
-    this.setState({ activeRoom: room });
+  handleRoomClickParent(room) {
+    console.log(room);
+  //  this.setState({ activeRoom: room });
   }
 
   render() {
@@ -36,7 +36,7 @@ class App extends Component {
         />
         <MessageList
         firebase={firebase}
-        handleRoomClickParent={() => this.handleRoomClickParent}
+        getRoom={this.handleRoomClickParent}
         />
       </div>
     );
