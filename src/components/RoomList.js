@@ -50,13 +50,15 @@ class RoomList extends Component {
             Create Chat Room
           </button>
         </div>
-        {
-          this.state.rooms.map( (room, index) =>
-            <div className="chat-rooms" key={room.key} onClick={ () => this.handleRoomClickChild(room) }>
-              {room.name}
-            </div>
-          )
-        }
+        <div>
+          {
+            this.state.rooms.map( (room, index) =>
+              <div className="chat-rooms" key={index} onClick={ () => this.handleRoomClickChild(room) }>
+                {room.name}
+              </div>
+            )
+          }
+        </div>
       </aside>
     );
   }
