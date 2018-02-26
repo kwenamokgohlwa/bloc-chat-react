@@ -23,9 +23,8 @@ class App extends Component {
     };
   }
 
-  handleRoomClickParent(room) {
-    console.log(room);
-  //  this.setState({ activeRoom: room });
+  handleRoomClickParent = (room) => {
+    this.setState({ activeRoom: room });
   }
 
   render() {
@@ -33,10 +32,12 @@ class App extends Component {
       <div className="App">
         <RoomList
         firebase={firebase}
+        getRoom={this.handleRoomClickParent}
+        activeRoom={this.state.activeRoom}
         />
         <MessageList
         firebase={firebase}
-        getRoom={this.handleRoomClickParent}
+        activeRoom={this.state.activeRoom}
         />
       </div>
     );
