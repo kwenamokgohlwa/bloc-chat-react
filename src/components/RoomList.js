@@ -28,9 +28,13 @@ class RoomList extends Component {
   }
 
   handleClick() {
-    this.roomsRef.push({
-      name: this.state.newRoomName
-    });
+    if(this.state.newRoomName === ""){
+      alert("Please enter room name before creating a room");
+    }else {
+      this.roomsRef.push({
+        name: this.state.newRoomName
+      });
+    }
   }
 
   handleRoomClickChild(room) {
@@ -39,25 +43,29 @@ class RoomList extends Component {
 
   render() {
     return (
-      <aside>
-        <div className="bloc-chat-header">
-          <h2>Bloc Chat</h2>
-          <input
-            type="text"
-            onChange={(e) => this.handleChange(e)}
-          />
-          <button onClick={() => this.handleClick()}>
-            Create Chat Room
+      <aside className="mdl-layout mdl-js-layout">
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">Bloc Chat</span>
+            <div className="mdl-textfield mdl-js-textfield">
+              <input
+                className="mdl-textfield__input"
+                type="text"
+                onChange={(e) => this.handleChange(e)}
+              />
+              <label className="mdl-textfield__label">Room...</label>
+            </div>
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => this.handleClick()}>
+            Create Room
           </button>
-        </div>
-        <div>
-          {
-            this.state.rooms.map( (room, index) =>
-              <div className="chat-rooms" key={index} onClick={ () => this.handleRoomClickChild(room) }>
-                {room.name}
-              </div>
-            )
-          }
+            <nav className="mdl-navigation">
+              {
+                this.state.rooms.map( (room, index) =>
+                  <div className="mdl-navigation__link" key={index} onClick={ () => this.handleRoomClickChild(room) }>
+                    {room.name}
+                  </div>
+                )
+              }
+            </nav>
         </div>
       </aside>
     );

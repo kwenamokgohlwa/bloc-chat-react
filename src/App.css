@@ -22,7 +22,29 @@
   font-size: large;
 }
 
+.mdl-layout__header {
+  background: rgb(158, 158,158);
+  border: none;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.grey {
+  background-color: rgb(236, 236, 236);
+}
+
+div.mdl-layout__drawer {
+}
+
+div.user {
+  text-align: center;
+  background-color: rgb(236, 236, 236);
+  padding-bottom: 30px;
+}
+
+span.mdl-layout-title {
+  padding: 20px 20px 20px 20px;
 }

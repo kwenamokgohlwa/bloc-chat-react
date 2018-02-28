@@ -35,16 +35,23 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <User
-        firebase={firebase}
-        setUser={this.setUser}
-        user={this.state.user}
-        />
+      <div className="App mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header className="mdl-layout__header">
+          <div className="mdl-layout-icon"></div>
+          <div className="mdl-layout__header-row">
+            <span>Bloc Chat</span>
+            <div className="mdl-layout-spacer"></div>
+          </div>
+        </header>
         <RoomList
         firebase={firebase}
         getRoom={this.handleRoomClickParent}
         activeRoom={this.state.activeRoom}
+        />
+        <User
+        firebase={firebase}
+        setUser={this.setUser}
+        user={this.state.user}
         />
         <MessageList
         firebase={firebase}

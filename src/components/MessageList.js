@@ -39,30 +39,54 @@ class MessageList extends Component {
     });
   }
 
+  bgColorClass(index) {
+    if(index % 2 === 0) {
+      return "mdl-list__item mdl-list__item--three-line " + "grey";
+    }else {
+      return "mdl-list__item mdl-list__item--three-line ";
+    }
+  }
+
   render() {
     return(
       <section className="message-list">
         <div>
-          <h2>{this.props.activeRoom.name}</h2>
+          <span className="mdl-layout-title">{this.props.activeRoom.name}</span>
         </div>
-        {
-          this.state.messages.filter( message => message.roomID === this.props.activeRoom.key ).map( (message, index) =>
-            <div key={index}>
-              <h3>{message.username}</h3>
-              <span>{ isNaN(message.sentAt) ? message.sentAt : this.formatTimestamp(message.sentAt)}</span>
-              <p>{message.content}</p>
+        <ul className="mdl-list">
+              {
+                this.state.messages.filter( message => message.roomID === this.props.activeRoom.key ).map( (message, index) =>
+                  <li key={index} className={this.bgColorClass(index)}>
+                    <span className="mdl-list__item-primary-content">
+                      <i className="material-icons mdl-list__item-avatar">person</i>
+                      <span>{message.username}</span>
+                      <span className="mdl-list__item-text-body">{message.content}</span>
+                    </span>
+                    <span className="mdl-list__item-secondary-content">
+                      <span className="mdl-list__item-secondary-info">{ isNaN(message.sentAt) ? message.sentAt : this.formatTimestamp(message.sentAt)}</span>
+                    </span>
+                  </li>
+                )
+              }
+        </ul>
+          {
+            this.props.activeRoom.name === undefined ?
+            <span>Please select the menu icon to choose or create a chat room</span>
+            :
+            <div>
+              <div className="mdl-textfield mdl-js-textfield">
+                <input
+                  className="mdl-textfield__input"
+                  type="text"
+                  onChange={(e) => this.handleChange(e)}
+                />
+                <label className="mdl-textfield__label" >Message...</label>
+              </div>
+              <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => this.handleClick()}>
+                Send Message
+              </button>
             </div>
-          )
-        }
-        <div>
-          <input
-            type="text"
-            onChange={(e) => this.handleChange(e)}
-          />
-          <button onClick={() => this.handleClick()}>
-            Send Message
-          </button>
-        </div>
+          }
       </section>
     );
   }

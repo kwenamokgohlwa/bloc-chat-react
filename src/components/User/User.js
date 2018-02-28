@@ -32,13 +32,17 @@ class User extends Component {
   render(){
     return(
       <div className="user">
-        <h2>{this.props.user.displayName}</h2>
-        <button onClick={() => this.handleSignIn()}>
-          Sign In
-        </button>
-        <button onClick={() => this.handleSignOut()}>
-          Sign Out
-        </button>
+          <span className="mdl-layout-title">{this.props.user.displayName}</span>
+        {
+          this.props.user.displayName === "Guest" ?
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => this.handleSignIn()}>
+            Sign In
+          </button>
+          :
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => this.handleSignOut()}>
+            Sign Out
+          </button>
+        }
       </div>
     );
   }
