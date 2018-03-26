@@ -43,31 +43,28 @@ class RoomList extends Component {
 
   render() {
     return (
-      <aside className="mdl-layout mdl-js-layout">
-        <div className="mdl-layout__drawer">
-          <span className="mdl-layout-title">Bloc Chat</span>
-            <div className="mdl-textfield mdl-js-textfield">
-              <input
-                className="mdl-textfield__input"
-                type="text"
-                onChange={(e) => this.handleChange(e)}
-              />
-              <label className="mdl-textfield__label">Room...</label>
-            </div>
+        <div>
+          <div className="mdl-textfield mdl-js-textfield">
+            <input
+              className="mdl-textfield__input"
+              type="text"
+              onChange={(e) => this.handleChange(e)}
+            />
+            <label className="mdl-textfield__label">Room...</label>
+          </div>
           <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => this.handleClick()}>
             Create Room
           </button>
-            <nav className="mdl-navigation">
-              {
-                this.state.rooms.map( (room, index) =>
-                  <div className="mdl-navigation__link" key={index} onClick={ () => this.handleRoomClickChild(room) }>
-                    {room.name}
-                  </div>
-                )
-              }
-            </nav>
+          <nav className="mdl-navigation">
+            {
+              this.state.rooms.map( (room, index) =>
+                <div className="mdl-navigation__link" key={index} onClick={ () => this.handleRoomClickChild(room) }>
+                  {room.name}
+                </div>
+              )
+            }
+          </nav>
         </div>
-      </aside>
     );
   }
 

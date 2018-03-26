@@ -39,25 +39,30 @@ class App extends Component {
         <header className="mdl-layout__header">
           <div className="mdl-layout-icon"></div>
           <div className="mdl-layout__header-row">
-            <span>Bloc Chat</span>
+            <span>Croc Chat</span>
             <div className="mdl-layout-spacer"></div>
           </div>
         </header>
-        <RoomList
-        firebase={firebase}
-        getRoom={this.handleRoomClickParent}
-        activeRoom={this.state.activeRoom}
-        />
-        <User
-        firebase={firebase}
-        setUser={this.setUser}
-        user={this.state.user}
-        />
-        <MessageList
-        firebase={firebase}
-        activeRoom={this.state.activeRoom}
-        user={this.state.user}
-        />
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">Croc Chat</span>
+          <RoomList
+          firebase={firebase}
+          getRoom={this.handleRoomClickParent}
+          activeRoom={this.state.activeRoom}
+          />
+        </div>
+        <main className="mdl-layout__content">
+          <User
+          firebase={firebase}
+          setUser={this.setUser}
+          user={this.state.user}
+          />
+          <MessageList
+          firebase={firebase}
+          activeRoom={this.state.activeRoom}
+          user={this.state.user}
+          />
+        </main>
       </div>
     );
   }
